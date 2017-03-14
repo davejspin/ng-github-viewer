@@ -3,3 +3,27 @@
 body {
   font-family: "Calibri", sans-serif;
 }
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border-bottom: black 1px solid;
+  font-family: "Calibri", sans-serif;
+  font-size: 11pt;
+  padding: 6px 6px;
+  text-align: left;
+}
+
+th {
+  background-color: #bfe6f6;
+}
+
+.LightHighlight {
+  background-color: #ffff66;
+}
