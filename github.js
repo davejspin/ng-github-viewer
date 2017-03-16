@@ -1,7 +1,7 @@
 (function() {
 
   var github = function($http) {
-    
+
     var apiUrl = "https://api.github.com";
 
     var getUser = function(username) {
@@ -20,30 +20,28 @@
     };
 
     var getRepoDetails = function(username, reponame) {
-
+      var repo;
       var serviceUrl = apiUrl + "/repos/" + username + "/" + reponame;
-      return $http.get(serviceUrl).then(function(response) {
-        return response.data;
-      });
-      
-    };
-
-    var getContributors = function(repo) {
-      return $http.get(repo.contributors_url).then(function(response) {
-        return response.data;
-      });
+      return $http.get(serviceUrl)
+        .then(function(response) {
+          repo = response.data;
+          return $http.get(serviceUrl + "/contributors");
+        })
+        .then(function(response) {
+          repo.contributors = response.data;
+          return repo;
+        });
     };
 
     return {
       getUser: getUser,
       getRepos: getRepos,
-      getRepoDetails: getRepoDetails,
-      getContributors: getContributors
+      getRepoDetails: getRepoDetails
     };
 
   };
 
   var module = angular.module("githubViewer");
   module.factory("github", github);
-  
+
 }());
