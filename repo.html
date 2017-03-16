@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="user in contributors">
+    <tr ng-repeat="user in repo.contributors">
       <td>{{user.login}}</td>
       <td><img ng-src="{{user.avatar_url}}" title="{{user.login}}" style="width:200px;height:200px;" /></td>
     </tr>
