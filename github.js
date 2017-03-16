@@ -1,11 +1,13 @@
 (function() {
 
   var github = function($http) {
+    
+    var apiUrl = "https://api.github.com";
 
     var getUser = function(username) {
 
-      var apiUrl = "https://api.github.com/users/" + username;
-      return $http.get(apiUrl).then(function(response) {
+      var serviceUrl = apiUrl + "/users/" + username;
+      return $http.get(serviceUrl).then(function(response) {
         return response.data;
       });
 
@@ -17,9 +19,26 @@
       });
     };
 
+    var getRepoDetails = function(username, reponame) {
+
+      var serviceUrl = apiUrl + "/repos/" + username + "/" + reponame;
+      return $http.get(serviceUrl).then(function(response) {
+        return response.data;
+      });
+      
+    };
+
+    var getContributors = function(repo) {
+      return $http.get(repo.contributors_url).then(function(response) {
+        return response.data;
+      });
+    };
+
     return {
       getUser: getUser,
-      getRepos: getRepos
+      getRepos: getRepos,
+      getRepoDetails: getRepoDetails,
+      getContributors: getContributors
     };
 
   };
