@@ -1,0 +1,31 @@
+<div>
+  <h2>{{repo.name}} Repository</h2>
+
+  <ul>
+    <li>Description: {{repo.description}}</li>
+    <li>Language: {{repo.language}}</li>
+    <li>Open Issues: {{repo.open_issues_count}}</li>
+  </ul>
+
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Avatar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in contributors">
+      <td>{{user.login}}</td>
+      <td><img ng-src="{{user.avatar_url}}" title="{{user.login}}" style="width:200px;height:200px;" /></td>
+    </tr>
+  </tbody>
+</table>
+<p>
+<a href="#/main">Back to search</a>
+</p>
+<p>
+<a href="#/user/{{repo.owner.login}}">Back to {{repo.owner.login}}</a>
+</p>
